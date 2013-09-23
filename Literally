@@ -1,0 +1,53 @@
+//Letter Tally Program - Brendan Courson - AP Comp Sci
+import java.io.*;
+public class Literally {
+    private int[]tally = new int[26];
+    private int letterTotal;
+    private String alpha = "abcdefghijklmnopqrstuvwxyz";
+
+    public void tallyUp() throws IOException {
+        String fileName;
+        String fileString;
+
+        InputStreamReader sReader= new InputStreamReader(System.in);
+        BufferedReader input = new BufferedReader(sReader);
+
+        System.out.print("Type the name of the file to be read: ");
+        fileName = input.readLine();
+
+        FileReader fReader = new FileReader(fileName);
+        BufferedReader inFile = new BufferedReader(fReader);
+
+        fileString = inFile.readLine();
+        do{
+            for(int x=0; x<fileString.length(); x++){
+                for(int y=0; y<26; y++){
+                    if(Character.toLowerCase(fileString.charAt(x))==alpha.charAt(y)){
+                        tally[y]++;
+                        letterTotal++;
+                    }
+                }
+            }
+            fileString = inFile.readLine();
+        }
+        while(fileString!=""&&fileString!=null);
+    }
+
+    public void output(){
+        for(int z=0; z<26; z++){
+            System.out.println(Character.toUpperCase(alpha.charAt(z))+": Number of Occurrences: "+tally[z]+
+                    "\nPercentage of All Alphabetical Characters in File: "+Math.round(1000*tally[z]/letterTotal)/10.+"%");
+        }
+    }
+
+    public static void main (String Args[]) throws IOException {
+        Literally letterTally = new Literally();
+        letterTally.tallyUp();
+        letterTally.output();
+    }
+
+
+
+
+
+}
