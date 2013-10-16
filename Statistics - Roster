@@ -1,0 +1,59 @@
+//Brendan Courson - AP Computer Science - Statistics (Roster)
+import java.io.*;
+import java.util.StringTokenizer;
+
+public class Roster {
+    private final int STUDMAX = 30;
+
+    private final char cs = 'C';
+    private final char edu = 'E';
+    private final char math = 'M';
+    private final char buis = 'B';
+    private final char eng = 'N';
+    private final char art = 'A';
+
+    private int badData;
+
+    private Student[] studRost = new Student[STUDMAX];
+
+    public void inputStudents() throws IOException {
+        String storeLine;
+
+        InputStreamReader reader = new InputStreamReader(System.in);
+        BufferedReader input = new BufferedReader(reader);
+
+        System.out.print("Type the name of the file to be read: ");
+        String fName = input.readLine();
+        FileReader fReader = new FileReader(fName);
+        BufferedReader fInput = new BufferedReader(fReader);
+
+        for(int x=0 ; x<30 && (storeLine = fInput.readLine())!=null ; x++){
+
+            StringTokenizer sToken = new StringTokenizer(storeLine);
+
+            while(sToken.hasMoreTokens()){
+                studRost[x].setID(Integer.parseInt(sToken.nextToken()));
+                studRost[x].setScore(Integer.parseInt(sToken.nextToken()));
+                studRost[x].setMajor(sToken.nextToken().charAt(0));
+                if(studRost[x].getMajor()!= cs &&
+                        studRost[x].getMajor()!= edu &&
+                        studRost[x].getMajor()!= math &&
+                        studRost[x].getMajor()!= buis &&
+                        studRost[x].getMajor()!= eng &&
+                        studRost[x].getMajor()!= art)
+                {
+                    badData++;
+                    studRost[x].setMajor('X');
+                }
+            }
+        }
+    }
+
+    public void
+
+    static public void main (String Args[]) throws IOException {
+        Roster roster = new Roster();
+        roster.inputStudents();
+
+    }
+}
