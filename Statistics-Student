@@ -1,0 +1,29 @@
+//Brendan Courson - AP Computer Science - Statistics (Student)
+import java.io.*;
+public class Student {
+    private int score;
+    private int ID;
+    private char major;
+
+    public void setID(int id){
+      ID=id;
+    }
+    public void setScore(int scr){
+      score = scr;
+    }
+    public void setMajor(char maj){
+      major = maj;
+    }
+
+    public int getID(){
+      return ID;
+    }
+    public int getScore(){
+      return score;
+    }
+    public char getMajor(){
+        return major;
+    }
+
+}
+
